@@ -28,16 +28,4 @@ public class SuccessResponse {
         this.cash = cash;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SuccessResponse response = (SuccessResponse) o;
-        return message.equals(response.message) && cash.equals(response.cash);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(message, cash);
-    }
 }

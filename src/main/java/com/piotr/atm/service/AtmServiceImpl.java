@@ -88,10 +88,10 @@ public class AtmServiceImpl implements AtmService{
      * @param atmId
      * @return
      */
-     Cash withdrawnCashFromMachine(Long accountNumber, int requestedCash, Long atmId) {
+     private Cash withdrawnCashFromMachine(Long accountNumber, int requestedCash, Long atmId) {
         User dbUser = userService.getUserAccount(accountNumber);
-         Long currentBalance = dbUser.getBalance();
-         Long currentOverdraft = dbUser.getOverdraft();
+        Long currentBalance = dbUser.getBalance();
+        Long currentOverdraft = dbUser.getOverdraft();
         String message = hasCashMachineEnoughNotes(requestedCash, atmId);
         if(message.equals(WITHDRAWN)){
             if(currentBalance >= requestedCash){
@@ -227,7 +227,6 @@ public class AtmServiceImpl implements AtmService{
         if(isPinValidForATM(atmId, pin)){
             response.setMessage(SUCCESS);
         }else {
-            response.setMessage("ERROR");
             response.setMessage(INCORRECT_ATM_DETAILS);
             return response;
         }

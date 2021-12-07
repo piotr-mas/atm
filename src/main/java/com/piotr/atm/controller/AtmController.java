@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping(value = "/atm/")
+@RequestMapping(value = "/atm")
 @Validated
 public class AtmController {
 
@@ -34,7 +34,7 @@ public class AtmController {
      * @param payload
      * @return
      */
-    @PostMapping("balance")
+    @PostMapping("/balance")
     public ResponseEntity<SuccessResponse> displayBalance(@Valid @RequestBody AtmUserPayload payload){
         SuccessResponse response =  service.getBalance(payload.getAccountNumber(), payload.getPin());
         return ResponseEntity.ok().body(response);
@@ -45,7 +45,7 @@ public class AtmController {
      * @param payload
      * @return
      */
-    @PostMapping("withdrawn/{atmId}")
+    @PostMapping("/withdrawn/{atmId}")
     public ResponseEntity<SuccessResponse> withdrawn(@PathVariable("atmId")
                                     @Min(value = 1, message = "ATM id must be greater than 0")
                                     @Max(value = 9999, message = "ATM id must be lesser than 0") Long atmId,
@@ -60,7 +60,7 @@ public class AtmController {
      * @param payload
      * @return
      */
-    @PostMapping("statistics/{atmId}")
+    @PostMapping("/statistics/{atmId}")
     public ResponseEntity<SuccessResponse> displayStatistics(@PathVariable("atmId")
                                             @Min(value = 1, message = "ATM id must be greater than 0")
                                             @Max(value = 9999, message = "ATM id must be lesser than 0") Long atmId,
